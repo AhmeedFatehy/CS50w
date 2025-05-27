@@ -1,0 +1,28 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    New Entry
+{% endblock %}
+
+{% block body %}
+    <h1>
+        Add new entry (using 
+        <a href="https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax"> 
+            this markdown language
+        </a>)
+    </h1>
+    
+    <form action="{% url 'new' %}" method="POST">
+        {% if messages %}
+        <ul class="error_messages">
+            {% for m in messages %}
+            <li>{{ m }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" name="submit" value="Submit Entry">
+
+    </form>
+{% endblock %}
